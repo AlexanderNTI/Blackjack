@@ -131,23 +131,23 @@ def get_decision(hand: list, deck: Deck, turn: bool, firstDecision: bool, hands:
 
 def save_balance(money):
     import os
-    script_dir = os.path.dirname(__file__); rel_path = "data\money.pkl"; money_pkl_path = os.path.join(script_dir, rel_path)
+    script_dir = os.path.dirname(__file__); rel_path = "data\\money.pkl"; money_pkl_path = os.path.join(script_dir, rel_path)
 
     with open(money_pkl_path, 'wb') as file:
         pickle.dump(money, file)
 
 def blackjack(ruleH17: bool, deckAmount: int):
     import os
-    script_dir = os.path.dirname(__file__); rel_path = "data\money.pkl"; money_pkl_path = os.path.join(script_dir, rel_path)
+    script_dir = os.path.dirname(__file__); rel_path = "data\\money.pkl"; money_pkl_path = os.path.join(script_dir, rel_path)
     
     with open(money_pkl_path, 'rb') as file:
-        money: int = pickle.load(file)
+        money: float = pickle.load(file)
     shoe = Deck(deckAmount); shoe.shuffle()
 
     while True:
         dealer_hand, player_hand  = [], []; hands = [dealer_hand, player_hand]
         natural, double_down = [], []
-        outcome = 0
+        outcome: float
         bet = betting(money)
         
         for _ in range(2):
